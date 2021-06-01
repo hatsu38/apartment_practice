@@ -15,6 +15,7 @@
 class Company < ApplicationRecord
 
   # Relations
+  has_many :departments
 
   # Validations
 

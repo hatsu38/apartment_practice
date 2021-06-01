@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_06_01_101043) do
 
   create_table "departments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
+    t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,0 +1,10 @@
+<%= form_with model: @employee do |form| %>
+
+  <%= form.label :name, "名前" %>
+  <%= form.text_field :name %>
+
+  <%= form.label :department_id, "部署名" %>
+  <%= form.select :department_id, Department.pluck(:name, :id) %>
+
+  <%= form.submit "作成する" %>
+<% end %>
