@@ -50,7 +50,7 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
-  database: apartment_practice_production
-  username: apartment_practice
-  password: <%= ENV['APARTMENT_PRACTICE_DATABASE_PASSWORD'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  hostname: <%= ENV['DATABASE_HOST'] %>
