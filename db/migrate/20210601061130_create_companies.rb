@@ -6,5 +6,7 @@ class CreateCompanies < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+
+    add_index :companies, [:subdomain], unique: true
   end
 end
