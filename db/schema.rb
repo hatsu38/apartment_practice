@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2021_06_01_061130) do
 
   create_table "companies", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", default: "", null: false
+    t.string "subdomain", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

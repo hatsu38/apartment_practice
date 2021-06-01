@@ -1,0 +1,10 @@
+<%= form_with model: @company do |form| %>
+
+  <%= form.label :name, "会社名" %>
+  <%= form.text_field :name %>
+
+  <%= form.label :subdomain, "サブドメイン" %>
+  <%= form.text_field :subdomain %>
+
+  <%= form.submit "作成する" %>
+<% end %>
