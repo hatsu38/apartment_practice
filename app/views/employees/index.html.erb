@@ -1,0 +1,9 @@
+<h1>Employee</h1>
+
+<% @employees.each do |employee| %>
+  <p><%= employee.name %></p>
+<% end %>
+
+<%= link_to "新規作成", new_employee_path %>
+
+<%= link_to "部署一覧", departments_path %>

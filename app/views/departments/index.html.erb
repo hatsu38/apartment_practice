@@ -3,3 +3,7 @@
 <% @departments.each do |department| %>
   <p><%= department.name %></p>
 <% end %>
+
+<%= link_to "新規作成", new_department_path %>
+
+<%= link_to "従業員一覧", employees_path %>

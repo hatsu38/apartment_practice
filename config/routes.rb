@@ -12,5 +12,6 @@ Rails.application.routes.draw do
 
   constraints ExcludedSubdomainConstraint do
     resources :departments, only:[:index, :new, :create]
+    resources :employees, only:[:index, :new, :create]
   end
 end
