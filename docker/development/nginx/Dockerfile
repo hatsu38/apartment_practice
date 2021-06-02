@@ -1,4 +1,4 @@
-FROM nginx:1.17.5
+FROM nginx:1.21.0
 
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \

@@ -5,12 +5,12 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - apartment_practice_db:/var/lib/mysql:delegated
+      - apartment_practice_db:/var/lib/mysql
       - ./db/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     environment:
       MYSQL_DATABASE: apartment_practice_development
-      MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: password
+      TZ: Asia/Tokyo
     networks:
       - app-network
     container_name: apartment_practice_db
@@ -29,53 +29,51 @@ services:
       - node_modules-volume:/app/node_modules
       - bundle-volume:/app/vendor
       - letter-opener-volume:/app/tmp/letter_opener
-    env_file: .env
     environment:
       DATABASE_HOST: db
       DATABASE_USERNAME: root
       DATABASE_PASSWORD: password
       DATABASE_NAME: apartment_practice_development
-      REDIS_URL_FOR_WORKER: redis://redis:6379
+      RAILS_ENV: development
     ports:
       - 3000:3000
     depends_on:
       - db
-      - redis
     command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b 0.0.0.0"
     container_name: apartment_practice_app
     networks:
       - app-network
 
-  webpacker:
-    <<: *app
-    command: bin/webpack-dev-server
-    ports:
-      - 3035:3035
-    depends_on:
-      - app
-    container_name: apartment_practice_webpacker
+  # webpacker:
+  #   <<: *app
+  #   command: bin/webpack-dev-server
+  #   ports:
+  #     - 3035:3035
+  #   depends_on:
+  #     - app
+  #   container_name: apartment_practice_webpacker
 
-  worker:
-    <<: *app
-    command: /bin/sh -c "bundle exec sidekiq -C config/sidekiq.yml"
-    ports:
-      - 6379:6379
-    depends_on:
-      - app
-    container_name: apartment_practice_worker
+  # worker:
+  #   <<: *app
+  #   command: /bin/sh -c "bundle exec sidekiq -C config/sidekiq.yml"
+  #   ports:
+  #     - 6379:6379
+  #   depends_on:
+  #     - app
+  #   container_name: apartment_practice_worker
 
-  redis:
-    image: redis:6.2.3-alpine
-    container_name: apartment_practice_redis
-    networks:
-      - app-network
+  # redis:
+  #   image: redis:6.2.3-alpine
+  #   container_name: apartment_practice_redis
+  #   networks:
+  #     - app-network
 
-  nginx:
-    build: ./docker/nginx
-    ports:
-      - 80:80
-    links:
-      - app
+  # nginx:
+  #   build: ./docker/development/nginx
+  #   ports:
+  #     - 80:80
+  #   links:
+  #     - app
 
 
 volumes:
