@@ -1,0 +1,91 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7.34
+    ports:
+      - 3306:3306
+    volumes:
+      - apartment_practice_db:/var/lib/mysql:delegated
+      - ./db/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      MYSQL_DATABASE: apartment_practice_development
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - app-network
+    container_name: apartment_practice_db
+
+  app: &app
+    build:
+      context: .
+      dockerfile: docker/development/rails/Dockerfile
+    tty: true
+    stdin_open: true
+    working_dir: /app
+    volumes:
+      - .:/app:cached
+      - /app/log
+      - /app/tmp
+      - node_modules-volume:/app/node_modules
+      - bundle-volume:/app/vendor
+      - letter-opener-volume:/app/tmp/letter_opener
+    env_file: .env
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: password
+      DATABASE_NAME: apartment_practice_development
+      REDIS_URL_FOR_WORKER: redis://redis:6379
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+      - redis
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b 0.0.0.0"
+    container_name: apartment_practice_app
+    networks:
+      - app-network
+
+  webpacker:
+    <<: *app
+    command: bin/webpack-dev-server
+    ports:
+      - 3035:3035
+    depends_on:
+      - app
+    container_name: apartment_practice_webpacker
+
+  worker:
+    <<: *app
+    command: /bin/sh -c "bundle exec sidekiq -C config/sidekiq.yml"
+    ports:
+      - 6379:6379
+    depends_on:
+      - app
+    container_name: apartment_practice_worker
+
+  redis:
+    image: redis:6.2.3-alpine
+    container_name: apartment_practice_redis
+    networks:
+      - app-network
+
+  nginx:
+    build: ./docker/nginx
+    ports:
+      - 80:80
+    links:
+      - app
+
+
+volumes:
+  apartment_practice_db:
+  bundle-volume:
+    driver: local
+  node_modules-volume:
+    driver: local
+  letter-opener-volume:
+    driver: local
+
+networks:
+  app-network:
