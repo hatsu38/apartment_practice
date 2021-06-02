@@ -44,14 +44,14 @@ services:
     networks:
       - app-network
 
-  # webpacker:
-  #   <<: *app
-  #   command: bin/webpack-dev-server
-  #   ports:
-  #     - 3035:3035
-  #   depends_on:
-  #     - app
-  #   container_name: apartment_practice_webpacker
+  webpacker:
+    <<: *app
+    command: bin/webpack-dev-server
+    ports:
+      - 3035:3035
+    depends_on:
+      - app
+    container_name: apartment_practice_webpacker
 
   # worker:
   #   <<: *app
