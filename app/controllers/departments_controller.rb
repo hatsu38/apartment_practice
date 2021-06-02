@@ -1,7 +1,7 @@
 class DepartmentsController < ApplicationController
 
   def index
-    @departments = Department.all
+    @departments = Department.where(id: current_company_id)
   end
 
   def new
@@ -20,13 +20,11 @@ class DepartmentsController < ApplicationController
 
   private
 
-  private
-
-  def current_company
-    Company.find_by(subdomain: Apartment::Tenant.current)
+  def current_company_id
+    Company.find_by(subdomain: Apartment::Tenant.current).id
   end
 
   def department_params
-    params.require(:department).permit(:name).merge(company_id: current_company.id)
+    params.require(:department).permit(:name).merge(company_id: current_company_id)
   end
 end
