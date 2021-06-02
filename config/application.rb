@@ -23,7 +23,6 @@ module ApartmentPractice
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-    config.hosts << ".lvh.me"
 
     # generator時に作成しない
     config.generators do |g|
