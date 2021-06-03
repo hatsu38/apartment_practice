@@ -1,3 +1,4 @@
+# docker build -f docker/development/rails/Dockerfile -t apartment-practice .
 FROM ruby:2.7.2
 
 ENV NODE_MAJOR_VERSION 14

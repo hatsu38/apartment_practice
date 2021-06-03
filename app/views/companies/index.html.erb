@@ -3,3 +3,5 @@
 <% @companies.each do |company| %>
   <p><%= company.name %>：<%= company.subdomain %></p>
 <% end %>
+
+<%= link_to "会社名", new_company_path, id: "new_compnay_path" %>
