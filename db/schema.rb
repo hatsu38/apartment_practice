@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_06_01_101043) do
 
-  create_table "companies", charset: "latin1", force: :cascade do |t|
+  create_table "companies", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "subdomain", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -20,14 +20,14 @@ ActiveRecord::Schema.define(version: 2021_06_01_101043) do
     t.index ["subdomain"], name: "index_companies_on_subdomain", unique: true
   end
 
-  create_table "departments", charset: "latin1", force: :cascade do |t|
+  create_table "departments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "employees", charset: "latin1", force: :cascade do |t|
+  create_table "employees", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.bigint "department_id", null: false
     t.datetime "created_at", precision: 6, null: false

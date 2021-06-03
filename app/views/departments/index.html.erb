@@ -4,6 +4,6 @@
   <p><%= department.name %></p>
 <% end %>
 
-<%= link_to "新規作成", new_department_path %>
+<%= link_to "新規作成", new_department_path, id: "new_department_link" %>
 
 <%= link_to "従業員一覧", employees_path %>
