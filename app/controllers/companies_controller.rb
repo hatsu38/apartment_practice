@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-
+  protect_from_forgery
   def index
     @companies = Company.all
   end
