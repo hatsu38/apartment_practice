@@ -1,6 +1,6 @@
 # docker build -f docker/production/Dockerfile -t apartment-practice-nginx-rails .
-# docker tag apartment-practice-nginx-rails:latest 318288222771.dkr.ecr.ap-northeast-1.amazonaws.com/apartment-practice-nginx-rails:latest
-# docker push 318288222771.dkr.ecr.ap-northeast-1.amazonaws.com/apartment-practice-nginx-rails:latest
+# docker tag apartment-practice-nginx-rails:latest $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/apartment-practice-nginx-rails:latest
+# docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/apartment-practice-nginx-rails:latest
 
 FROM ruby:2.7.2
 
