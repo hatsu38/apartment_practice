@@ -7,7 +7,6 @@ phases:
     commands:
       - echo "Install Start!"
       - ruby -v
-      - mysql --version
 
   build:
     commands:
