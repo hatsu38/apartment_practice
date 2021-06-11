@@ -3,7 +3,7 @@ public/packs/
 vendor/
 log/
 tmp/
-!/tmp/pids/.keep
+!/tmp/pid/.keep
 !/tmp/sockets/.keep
 .git
 .env
