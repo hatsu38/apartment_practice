@@ -9,6 +9,7 @@ env:
 phases:
   install:
     commands:
+      - echo Logging in to Amazon ECR...
       - ruby -v
       - bundle config set path 'vendor/bundle'
       - bundle install --jobs=4 --retry=3
