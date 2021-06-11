@@ -12,12 +12,12 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -f docker/production/Dockerfile -t apartment-practice-nginx-rails .
-      - echo docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID_FOR_APARTMENT_PRACTICE.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID_FOR_APARTMENT_PRACTICE.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - echo docker tag $IMAGE_REPO_NAME:$IMAGE_REPOSITORY_TAG $AWS_ACCOUNT_ID_FOR_APARTMENT_PRACTICE.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_REPOSITORY_TAG
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_REPOSITORY_TAG $AWS_ACCOUNT_ID_FOR_APARTMENT_PRACTICE.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_REPOSITORY_TAG
 
   post_build:
     commands:
       - echo =================POST_BUILD=================
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push $AWS_ACCOUNT_ID_FOR_APARTMENT_PRACTICE.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker push $AWS_ACCOUNT_ID_FOR_APARTMENT_PRACTICE.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_REPOSITORY_TAG
