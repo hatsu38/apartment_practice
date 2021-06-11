@@ -4,7 +4,12 @@ phases:
   install:
     runtime-versions:
       ruby: 2.7
+    commands:
+      - echo "Install Start!"
+      - ruby -v
+      - mysql --version
 
   build:
     commands:
+      - echo "Build Start!!!"
       - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
