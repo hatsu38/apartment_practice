@@ -19,6 +19,7 @@ ENV APP_ROOT /app
 WORKDIR $APP_ROOT
 
 ADD Gemfile Gemfile.lock package.json yarn.lock $APP_ROOT/
+RUN mkdir -p $APP_ROOT/tmp/sockets
 
 RUN gem update --system && gem install bundler:2.1.4
 
