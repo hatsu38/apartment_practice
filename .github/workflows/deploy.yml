@@ -77,6 +77,6 @@ jobs:
         service: apartment-practice-blue-green
         cluster: apartment-praactice-rails-nginx
         wait-for-service-stability: true
-        codedeploy-appspec: appspec.yml
+        codedeploy-appspec: deploy/appspec.yml
         codedeploy-application: AppECS-apartment-praactice-rails-nginx-apartment-practice-blue-green
         codedeploy-deployment-group: DgpECS-apartment-praactice-rails-nginx-apartment-practice-blue-green
