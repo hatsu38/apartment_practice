@@ -75,5 +75,5 @@ jobs:
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         service: apartment-practice-blue-green
-        cluster: default
+        cluster: apartment-praactice-rails-nginx
         wait-for-service-stability: true
