@@ -58,8 +58,7 @@ jobs:
         ECR_REPOSITORY: apartment-practice-nginx-rails
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        echo =================Push to ECR=================
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker build -f docker/production/Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
