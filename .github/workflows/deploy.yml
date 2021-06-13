@@ -84,7 +84,7 @@ jobs:
         ECR_REPOSITORY: apartment-practice-nginx-rails
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker tag apartment-practice-nginx-rails:latest ${{ ECR_REGISTRY }}/${{ ECR_REPOSITORY }}:${{ IMAGE_TAG }}
+        docker tag apartment-practice-nginx-rails:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
