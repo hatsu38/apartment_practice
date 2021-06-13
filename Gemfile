@@ -29,6 +29,10 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'ros-apartment', require: 'apartment'
+gem 'sidekiq' # 非同期Job
+gem 'redis' # Sudekiqやキャッシュの保存に利用
+gem 'hiredis' # Redisのより高速なgem。hiredisが使えるときに自動で使われる
+gem 'redis-namespace' # redisの呼び出し時にキーに指定したnamespaceを追加してくれる
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
