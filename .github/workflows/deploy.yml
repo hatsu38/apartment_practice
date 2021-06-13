@@ -73,7 +73,7 @@ jobs:
         file: ./docker/production/Dockerfile
         builder: ${{ steps.buildx.outputs.name }}
         push: false
-        tags: apartment-practice-nginx-rails:latest
+        tags: apartment-practice-nginx-rails
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache
 
@@ -84,6 +84,7 @@ jobs:
         ECR_REPOSITORY: apartment-practice-nginx-rails
         IMAGE_TAG: ${{ github.sha }}
       run: |
+        docker images
         docker tag apartment-practice-nginx-rails:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
