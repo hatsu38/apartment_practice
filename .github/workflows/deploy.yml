@@ -40,20 +40,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Cache Docker layers
-      uses: actions/cache@v2
-      with:
-        path: /tmp/.buildx-cache
-        key: ${{ github.ref }}-${{ github.sha }}
-        restore-keys: |
-          ${{ github.ref }}-${{ github.sha }}
-          ${{ github.ref }}
-          refs/head/main
-
-    - name: Set up Docker Buildx
-      id: buildx
-      uses: docker/setup-buildx-action@v1
-
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -65,18 +51,6 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build and push
-      id: docker_build
-      uses: docker/build-push-action@v2
-      with:
-        context: ./
-        file: ./docker/production/Dockerfile
-        builder: ${{ steps.buildx.outputs.name }}
-        push: false
-        tags: apartment-practice-nginx-rails
-        cache-from: type=local,src=/tmp/.buildx-cache
-        cache-to: type=local,dest=/tmp/.buildx-cache
-
     - name: Docker push image to Amazon ECR
       id: build-image
       env:
@@ -84,8 +58,8 @@ jobs:
         ECR_REPOSITORY: apartment-practice-nginx-rails
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker images
-        docker tag apartment-practice-nginx-rails:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker build \
+        -f docker/production/Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
