@@ -74,9 +74,9 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: apartment-practice-blue-green
-        cluster: apartment-praactice-rails-nginx
+        service: apartment-practice
+        cluster: apartment-practice
         wait-for-service-stability: true
         codedeploy-appspec: deploy/appspec.yml
-        codedeploy-application: AppECS-apartment-praactice-rails-nginx-apartment-practice-blue-green
-        codedeploy-deployment-group: DgpECS-apartment-praactice-rails-nginx-apartment-practice-blue-green
+        codedeploy-application: AppECS-apartment-practice-apartment-practice
+        codedeploy-deployment-group: apartment-practice-deploy-group
