@@ -54,12 +54,19 @@ jobs:
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
+        DOCKER_BUILDKIT: 1
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: apartment-practice-nginx-rails
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker build -f docker/production/Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker build \
+          -f docker/production/Dockerfile \
+          --cache-from=$ECR_REGISTRY/$ECR_REPOSITORY:latest \
+          --build-arg BUILDKIT_INLINE_CACHE=1 \
+          -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+          -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
     - name: Fill in the new image ID in the Amazon ECS task definition
