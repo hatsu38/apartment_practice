@@ -1,7 +1,8 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.hosts << "app"
+  config.hosts << "*.apartment-practice.hatsu38.com"
+  config.hosts << "apartment-practice.hatsu38.com"
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
