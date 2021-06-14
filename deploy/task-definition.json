@@ -60,6 +60,10 @@
         {
           "valueFrom": "/apartment-practice/rails-master-key",
           "name": "RAILS_MASTER_KEY"
+        },
+        {
+          "valueFrom": "/apartment-practice/redis-url",
+          "name": "REDIS_URL"
         }
       ],
       "dockerSecurityOptions": null,
