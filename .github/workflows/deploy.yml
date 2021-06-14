@@ -100,9 +100,9 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.sidekiq-task-def.outputs.task-definition }}
-        service: apartment-practice
+        service: apartment-practice-sidekiq
         cluster: apartment-practice
         wait-for-service-stability: true
-        codedeploy-appspec: deploy/appspec.yml
-        codedeploy-application: AppECS-apartment-practice-apartment-practice
-        codedeploy-deployment-group: apartment-practice-deploy-group
+        codedeploy-appspec: deploy/sidekiq-appspec.yml
+        codedeploy-application: AppECS-apartment-practice-apartment-practice-sidekiq
+        codedeploy-deployment-group: apartment-practice-sidekiq
