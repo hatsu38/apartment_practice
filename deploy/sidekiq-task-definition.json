@@ -87,7 +87,7 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "apartment-practice-sidekiq"
+      "name": "apartment-practice-nginx-rails"
     }
   ],
   "placementConstraints": [],

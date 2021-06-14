@@ -69,24 +69,24 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-    - name: 【Rails】 Fill in the new image ID in the Amazon ECS task definition
-      id: task-def
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: deploy/task-definition.json
-        container-name: apartment-practice-nginx-rails
-        image: ${{ steps.build-image.outputs.image }}
+    # - name: 【Rails】 Fill in the new image ID in the Amazon ECS task definition
+    #   id: task-def
+    #   uses: aws-actions/amazon-ecs-render-task-definition@v1
+    #   with:
+    #     task-definition: deploy/task-definition.json
+    #     container-name: apartment-practice-nginx-rails
+    #     image: ${{ steps.build-image.outputs.image }}
 
-    - name: 【Rails】 Deploy Amazon ECS task definition
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: apartment-practice
-        cluster: apartment-practice
-        wait-for-service-stability: true
-        codedeploy-appspec: deploy/appspec.yml
-        codedeploy-application: AppECS-apartment-practice-apartment-practice
-        codedeploy-deployment-group: apartment-practice-deploy-group
+    # - name: 【Rails】 Deploy Amazon ECS task definition
+    #   uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+    #   with:
+    #     task-definition: ${{ steps.task-def.outputs.task-definition }}
+    #     service: apartment-practice
+    #     cluster: apartment-practice
+    #     wait-for-service-stability: true
+    #     codedeploy-appspec: deploy/appspec.yml
+    #     codedeploy-application: AppECS-apartment-practice-apartment-practice
+    #     codedeploy-deployment-group: apartment-practice-deploy-group
 
     - name: 【Sidekiq】 Fill in the new image ID in the Amazon ECS task definition
       id: sidekiq-task-def
