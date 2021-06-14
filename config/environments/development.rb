@@ -27,7 +27,7 @@ Rails.application.configure do
       'Cache-Control' => "public, max-age=#{2.days.to_i}"
     }
     config.cache_store = :redis_cache_store, {
-      url: ENV["REDIS_URL"],
+      url: "redis://#{ENV["REDIS_URL"]}",
       expires_in: 24.hours,
       namespace: 'cache',
     }
