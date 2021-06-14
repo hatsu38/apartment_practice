@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/apartment-practice-nginx-rails",
+          "awslogs-group": "/ecs/apartment-practice-sidekiq",
           "awslogs-region": "ap-northeast-1",
           "awslogs-stream-prefix": "ecs"
         }
@@ -87,7 +87,7 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "apartment-practice-nginx-rails"
+      "name": "apartment-practice-sidekiq"
     }
   ],
   "placementConstraints": [],
@@ -97,7 +97,7 @@
     "EC2",
     "FARGATE"
   ],
-  "family": "apartment-practice-nginx-rails",
+  "family": "apartment-practice-sidekiq",
   "requiresAttributes": [
     {
       "targetId": null,
