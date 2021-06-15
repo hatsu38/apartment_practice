@@ -85,11 +85,6 @@ jobs:
         container-name: apartment-practice-sidekiq
         image: ${{ steps.build-image.outputs.image }}
 
-    - name: Test output
-      run: |
-        value=`cat ${{ steps.task-def-with-rails.outputs.task-definition }}`
-        echo The result is $value
-
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
