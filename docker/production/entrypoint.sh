@@ -2,5 +2,5 @@
 
 sudo service nginx start
 cd /app
-bin/setup
+RAILS_ENV=production bundle exec rails webpacker:compile
 bundle exec pumactl start
