@@ -10,3 +10,5 @@ tmp/
 config/master.key
 .github/
 deploy/
+spec/
+storage/
