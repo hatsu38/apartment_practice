@@ -12,7 +12,7 @@ class CompaniesController < ApplicationController
     if @company.valid?
       ApplicationRecord.transaction do
         @company.save
-        Apartment::Tenant.create(@company.subdomain)
+        # Apartment::Tenant.create(@company.subdomain)
       end
       redirect_to root_path
     else
