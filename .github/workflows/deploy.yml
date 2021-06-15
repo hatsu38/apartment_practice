@@ -85,6 +85,9 @@ jobs:
         container-name: apartment-practice-nginx-rails
         image: ${{ steps.build-image.outputs.image }}
 
+    - name: Test output
+      run: echo ::set-output name=task::$(cat ${{ steps.task-def-with-rails.outputs.task-definition }})
+
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
