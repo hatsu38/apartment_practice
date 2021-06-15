@@ -86,7 +86,7 @@ jobs:
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Test output
-      run: echo ::set-output name=task::$(cat ${{ steps.task-def-with-rails.outputs.task-definition }})
+      run: echo "mypath" | Out-File -FilePath ${{ steps.task-def-with-rails.outputs.task-definition }} -Encoding utf8 -Append
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
