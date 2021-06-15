@@ -23,7 +23,7 @@ jobs:
             --health-cmd="mysqladmin ping -h localhost"
             --health-interval=30s
             --health-timeout=20s
-            --health-retries=10
+            --health-retries=20
 
     env:
       TZ: Asia/Tokyo
