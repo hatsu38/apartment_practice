@@ -8,3 +8,5 @@ tmp/
 .git
 .env
 config/master.key
+.github/
+deploy/
