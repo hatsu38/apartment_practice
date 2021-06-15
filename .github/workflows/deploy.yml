@@ -87,22 +87,3 @@ jobs:
         codedeploy-appspec: deploy/appspec.yml
         codedeploy-application: AppECS-apartment-practice-apartment-practice
         codedeploy-deployment-group: apartment-practice-deploy-group
-
-    # - name: 【Sidekiq】 Fill in the new image ID in the Amazon ECS task definition
-    #   id: sidekiq-task-def
-    #   uses: aws-actions/amazon-ecs-render-task-definition@v1
-    #   with:
-    #     task-definition: deploy/sidekiq-task-definition.json
-    #     container-name: apartment-practice-nginx-rails
-    #     image: ${{ steps.build-image.outputs.image }}
-
-    # - name: 【Sidekiq】 Deploy Amazon ECS Sidekiq task definition
-    #   uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-    #   with:
-    #     task-definition: ${{ steps.sidekiq-task-def.outputs.task-definition }}
-    #     service: apartment-practice-sidekiq
-    #     cluster: apartment-practice
-    #     wait-for-service-stability: true
-    #     codedeploy-appspec: deploy/sidekiq-appspec.yml
-    #     codedeploy-application: AppECS-apartment-practice-apartment-practice-sidekiq
-    #     codedeploy-deployment-group: apartment-practice-sidekiq
