@@ -83,7 +83,7 @@ jobs:
       with:
         task-definition: ${{ steps.task-def-with-rails.outputs.task-definition }}
         container-name: apartment-practice-nginx-rails
-        image: ${{ steps.build-image.outputs.image }}
+        image: ${{ steps.login-ecr.outputs.registry }}/apartment-practice-nginx-rails:${{ github.sha }}
 
     - name: Test output
       run: |
