@@ -90,6 +90,7 @@
       "name": "apartment-practice-nginx-rails"
     },
     {
+      "name": "apartment-practice-sidekiq",
       "dnsSearchDomains": null,
       "environmentFiles": null,
       "logConfiguration": {
@@ -102,14 +103,7 @@
         }
       },
       "entryPoint": null,
-      "portMappings": [
-        {
-          "hostPort": 80,
-          "protocol": "tcp",
-          "containerPort": 80
-        }
-      ],
-      "command": ["bundle", "exec", "-C", "config/sidekiq.yml"],
+      "command": ["bundle", "exec", "sidekiq", "-C", "config/sidekiq.yml"],
       "linuxParameters": null,
       "cpu": 0,
       "environment": [
@@ -174,7 +168,6 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "apartment-practice-sidekiq"
     }
   ],
   "placementConstraints": [],
