@@ -34,6 +34,9 @@ gem 'redis' # Sudekiqやキャッシュの保存に利用
 gem 'hiredis' # Redisのより高速なgem。hiredisが使えるときに自動で使われる
 gem 'redis-namespace' # redisの呼び出し時にキーに指定したnamespaceを追加してくれる
 
+gem "asset_sync" # AssetsフォルダをS3に置く
+gem "fog-aws" # S3に接続するため
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
