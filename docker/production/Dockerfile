@@ -2,7 +2,7 @@
 # docker tag apartment-practice-nginx-rails:latest $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/apartment-practice-nginx-rails:latest
 # docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/apartment-practice-nginx-rails:latest
 
-FROM ruby:2.7.2-alpine AS base
+FROM ruby:2.7.2 AS base
 
 ENV APP_ROOT /app
 WORKDIR $APP_ROOT
