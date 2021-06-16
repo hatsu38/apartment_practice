@@ -23,7 +23,14 @@ RUN mkdir -p $APP_ROOT/tmp/sockets
 
 RUN gem update --system && gem install bundler:2.1.4
 
-RUN bundle install && yarn install --frozen-lockfile
+ENV RAILS_ENV production
+ENV BUNDLE_DEPLOYMENT true
+ENV BUNDLE_PATH vendor/bundle
+ENV BUNDLE_WITHOUT development:test
+
+RUN bundle install && yarn install --frozen-lockfile --production
+
+RUN SECRET_KEY_BASE=dummy bin/rails assets:precompile && rm -rf tmp/cache/*
 
 ADD . $APP_ROOT/
 
@@ -36,5 +43,3 @@ ADD docker/production/entrypoint.sh /app/entrypoint.sh
 EXPOSE 80
 
 RUN chmod +x /app/entrypoint.sh
-
-# CMD ["/app/entrypoint.sh"]
