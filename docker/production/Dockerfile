@@ -63,6 +63,7 @@ COPY . .
 
 # Copy files from each stages
 COPY --from=bundle /app/vendor/bundle /app/vendor/bundle
+COPY --from=yarn /app/node_modules node_modules
 
 # nginx
 RUN groupadd nginx
