@@ -25,7 +25,7 @@ RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR_VERSION.x | bash - && 
     echo 'deb http://dl.yarnpkg.com/debian/ stable main' > /etc/apt/sources.list.d/yarn.list && \
     apt-get update -qq && \
     apt-get install -y --no-install-recommends \
-    vim locales build-essential curl libpq-dev libmariadb-dev nodejs yarn
+    vim locales build-essential curl libpq-dev libmariadb-dev nodejs yarn nginx sudo
 
 # == bundle
 FROM builder AS bundle
