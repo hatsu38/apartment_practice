@@ -42,18 +42,13 @@ COPY package.json yarn.lock .
 RUN yarn install --production --frozen-lockfile && yarn cache clean
 
 # == main
-FROM base AS main
-
-# Add packages For Puma Start
-RUN apt-get update -qq && \
-    apt-get install -y --no-install-recommends \
-    vim libpq-dev libmariadb-dev nodejs nginx sudo yarn
+FROM builder AS main
 
 COPY . .
 
 # Copy files from each stages
 COPY --from=bundle /app/vendor/bundle /app/vendor/bundle
-COPY --from=yarn /app/node_modules node_modules
+COPY --from=yarn /app/node_modules /app/node_modules
 
 # nginx
 RUN groupadd nginx
