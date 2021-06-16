@@ -63,8 +63,6 @@ COPY . .
 
 # Copy files from each stages
 COPY --from=bundle /app/vendor/bundle /app/vendor/bundle
-COPY --from=assets /app/public/assets public/assets
-COPY --from=assets /app/public/packs public/packs
 
 # nginx
 RUN groupadd nginx
