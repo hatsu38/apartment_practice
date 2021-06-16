@@ -61,6 +61,18 @@
         {
           "valueFrom": "/apartment-practice/redis-url",
           "name": "REDIS_URL"
+        },
+        {
+          "valueFrom": "/apartment-practice/aws_access_key_id",
+          "name": "AWS_ACCESS_KEY_ID"
+        },
+        {
+          "valueFrom": "/apartment-practice/aws_secret_access_key",
+          "name": "AWS_SECRET_ACCESS_KEY"
+        },
+        {
+          "valueFrom": "/apartment-practice/aws_fog_directory",
+          "name": "AWS_FOG_DIRECTORY"
         }
       ]
     },
