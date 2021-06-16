@@ -47,7 +47,7 @@ FROM base AS main
 # Add packages For Puma Start
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \
-    vim libpq-dev libmariadb-dev nodejs nginx sudo
+    vim libpq-dev libmariadb-dev nodejs nginx sudo yarn
 
 COPY . .
 
