@@ -2,5 +2,5 @@
 
 sudo service nginx start
 cd /app
-bin/setup
+RAILS_ENV=production bin/rails assets:precompile
 bundle exec pumactl start
