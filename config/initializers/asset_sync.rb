@@ -19,7 +19,7 @@ if defined?(AssetSync)
     # Use http instead of https. Default should be "https" (at least for fog-aws)
     # config.fog_scheme = "http"
     # バケット名
-    config.fog_directory = ENV['FOG_DIRECTORY']
+    config.fog_directory = ENV['AWS_FOG_DIRECTORY']
 
     # Invalidate a file on a cdn after uploading files
     # config.cdn_distribution_id = "12345"
@@ -63,5 +63,18 @@ if defined?(AssetSync)
     # If you have an asset with name `app.0ba4d3.js`, only `app.0ba4d3` will need to be matched
     # config.cache_asset_regexps = [ /\.[a-f0-9]{8}$/i, /\.[a-f0-9]{20}$/i ]
     # config.cache_asset_regexp = /\.[a-f0-9]{8}$/i
+
+    ## Wepbaker Support
+    # Disable automatic run on precompile in order to attach to webpacker rake task
+    config.run_on_precompile = false
+    # The block should return an array of file paths
+    config.add_local_file_paths do
+      # Support webpacker assets
+      public_root = Rails.root.join("public")
+      Dir.chdir(public_root) do
+        packs_dir = Webpacker.config.public_output_path.relative_path_from(public_root)
+        Dir[File.join(packs_dir, '/**/**')]
+      end
+    end
   end
 end
