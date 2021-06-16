@@ -41,16 +41,6 @@ FROM builder AS yarn
 COPY package.json yarn.lock .
 RUN yarn install --production --frozen-lockfile && yarn cache clean
 
-# == assets
-FROM builder AS assets
-
-COPY . .
-
-COPY --from=bundle /app/vendor/bundle /app/vendor/bundle
-COPY --from=yarn /app/node_modules node_modules
-
-RUN SECRET_KEY_BASE=dummy bin/rails assets:precompile && rm -rf tmp/cache/*
-
 # == main
 FROM base AS main
 
