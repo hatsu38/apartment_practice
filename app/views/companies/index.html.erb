@@ -1,7 +1,8 @@
 <h1>Companies</h1>
 
+<ul>
 <% @companies.each do |company| %>
-  <p><%= company.name %>：<%= company.subdomain %></p>
+  <li><%= company.name %>：<%= company.subdomain %></li>
 <% end %>
-
+</ul>
 <%= link_to "会社名", new_company_path, id: "new_compnay_path" %>
