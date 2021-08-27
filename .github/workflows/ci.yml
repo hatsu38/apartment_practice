@@ -1,36 +1,36 @@
-name: CI
+name: RSpec
 
 on:
   pull_request:
   push:
     branches:
-      - master
+      - main
+      - develop
+      - staging
 
 jobs:
   rspec:
     name: RSpec
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     services:
-      mysql:
-        image: mysql:5.7.34
-        ports:
-          - 3306:3306
+      postgres:
+        image: postgres:13
         env:
-          MYSQL_DATABASE: apartment_practice_test
-          MYSQL_ROOT_PASSWORD: password
-          TZ: Asia/Tokyo
-          options: >-
-            --health-cmd="mysqladmin ping -h localhost"
-            --health-interval=30s
-            --health-timeout=20s
-            --health-retries=20
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     env:
       TZ: Asia/Tokyo
-      DATABASE_HOST: 127.0.0.1
       DATABASE_NAME: apartment_practice_test
-      DATABASE_USERNAME: root
+      DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: password
+      DATABASE_HOST: 127.0.0.1
       RAILS_ENV: test
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
 
@@ -42,22 +42,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.2
-
-      - name: Cache Gemfile.lock
-        uses: actions/cache@v2
-        with:
-          path: ./vendor/bundle
-          key: ${{ runner.os }}-rails-bundle-v1-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-rails-bundle-v1-
-
-      - name: gem install
-        run: |
-          gem install bundler -v 2.1.4
-
-      - name: bundler install
-        run: |
-          bundle check || bundle install --path vendor/bundle --jobs 4 --retry 3
+          bundler-cache: true
 
       - name: Setup Database
         run: |
