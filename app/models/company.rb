@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: companies
+# Table name: public.companies
 #
 #  id         :bigint           not null, primary key
 #  name       :string           default(""), not null
@@ -15,7 +15,6 @@
 class Company < ApplicationRecord
 
   # Relations
-  has_many :departments
 
   # Validations
 

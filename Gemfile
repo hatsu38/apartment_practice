@@ -36,6 +36,9 @@ gem 'redis-namespace' # redisの呼び出し時にキーに指定したnamespace
 
 gem "asset_sync" # AssetsフォルダをS3に置く
 gem "fog-aws" # S3に接続するため
+gem 'graphql' # GraphQLを利用
+
+gem 'seed-fu' # データ投入
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,6 +51,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'graphiql-rails' # RailsでGraphQLを扱いやすくする
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
