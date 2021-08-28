@@ -2,24 +2,15 @@
 #
 # Table name: employees
 #
-#  id            :bigint           not null, primary key
-#  name          :string           default(""), not null
-#  department_id :bigint           not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#
-# Indexes
-#
-#  index_employees_on_department_id  (department_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (department_id => departments.id)
+#  id         :bigint           not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 class Employee < ApplicationRecord
 
   # Relations
-  belongs_to :department
+  has_many :employee_profiles
+
   # Validations
 
   # Callbacks
