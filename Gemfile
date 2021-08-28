@@ -39,6 +39,7 @@ gem "fog-aws" # S3に接続するため
 gem 'graphql' # GraphQLを利用
 
 gem 'seed-fu' # データ投入
+gem 'devise' # 認証機能
 gem 'devise_token_auth' # 認証機能
 
 group :development, :test do
