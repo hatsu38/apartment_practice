@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.2'
+ruby '3.0.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
@@ -39,6 +39,9 @@ gem "fog-aws" # S3に接続するため
 gem 'graphql' # GraphQLを利用
 
 gem 'seed-fu' # データ投入
+gem 'devise' # 認証機能
+gem 'devise_token_auth' # 認証機能
+gem 'rack-cors' # Corsの設定
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
